@@ -11,24 +11,6 @@ services:
       - ./superset_config.py:/app/pythonpath/superset_config.py
     networks:
       - app-tier
-    depends_on:
-      - mysql
-
-  mysql:
-    container_name: jawad-mysql
-    image: mysql:latest
-    restart: always
-    environment:
-      MYSQL_DATABASE: "superset"
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "password"
-      MYSQL_ROOT_PASSWORD: "password"
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./volumes/mysql:/var/lib/mysql
-    networks:
-      - app-tier
 
 networks:
   app-tier:
