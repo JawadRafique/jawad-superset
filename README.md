@@ -20,12 +20,15 @@ A custom Superset deployment with embedded features and MySQL support.
    nano .env  # or use your preferred editor
    ```
    
-   Update the following variables:
-   - `DB_HOST`: Your MySQL server hostname
-   - `DB_USERNAME`: MySQL username
-   - `DB_PASSWORD`: MySQL password
-   - `DB_DATABASE`: Database name (create 'superset' database if it doesn't exist)
-   - `SUPERSET_ADMIN_*`: Admin user credentials for initial setup
+   Update the `DATABASE_URL` with your MySQL connection details:
+   ```
+   DATABASE_URL=mysql://your_username:your_password@your_host:3306/superset
+   ```
+   
+   Also update the admin credentials:
+   - `SUPERSET_ADMIN_USERNAME`: Admin username
+   - `SUPERSET_ADMIN_PASSWORD`: Admin password
+   - `SUPERSET_ADMIN_EMAIL`: Admin email address
 
 4. **Start the application**
    ```bash
@@ -54,11 +57,15 @@ SUPERSET_ADMIN_USERNAME=admin
 SUPERSET_ADMIN_PASSWORD=your_secure_password
 SUPERSET_ADMIN_EMAIL=admin@yourcompany.com
 
-# Database connection
-DB_HOST=your-mysql-host
-DB_USERNAME=your-username
-DB_PASSWORD=your-password
-DB_DATABASE=superset
+# Database connection (MySQL URL format)
+DATABASE_URL=mysql://username:password@hostname:3306/superset
+
+# Application settings
+SUPERSET_ENV=development
+SUPERSET_LOAD_EXAMPLES=no
+SUPERSET_WEBSERVER_PREFIX=/dash
+# generated via: openssl rand -base64 42
+SECRET_KEY=your_generated_secret_key
 ```
 
 ## Requirements
